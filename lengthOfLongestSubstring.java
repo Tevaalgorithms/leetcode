@@ -1,5 +1,6 @@
 class LengthOfLongestSubstring {
-    public int lengthOfLongestSubstring(String s) 
+    
+    public int lengthOfLongestSubstring_method1(String s) 
     {
         int n = s.length();
         int ans = 0;
@@ -12,4 +13,25 @@ class LengthOfLongestSubstring {
         }
         return ans;
     }
+    
+
+    public int lengthOfLongestSubstring_method2(String s) 
+    {
+       int n = s.length();
+       int ans = 0;
+       Map<Character, Integer> map = new HashMap<>();
+       
+       for(int i = 0, j = 0; i < n; i++)
+       {
+           if(map.containsKey(s.charAt(i)))
+           {
+               j = Math.max(map.get(s.charAt(i)), j);
+           }
+           ans = Math.max(ans, j - i + 1 );
+           map.put(s.charAt(i), j +1);
+       }
+      return ans;
+    }
+
+    
 }
