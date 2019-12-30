@@ -1,3 +1,5 @@
+// Got help from the following URL: https://massivealgorithms.blogspot.com/2016/10/leetcode-414-third-maximum-number.html
+
 class Solution {    
     public int thirdMax(int[] nums) {
         long first=Long.MIN_VALUE;
