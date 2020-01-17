@@ -1,3 +1,4 @@
+// Teva, think about the edge cases: a. [] and b. [1]
 class Solution {
     public int firstMissingPositive(int[] nums) {
         
