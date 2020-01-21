@@ -1,34 +1,44 @@
 // helpful URL: https://www.youtube.com/watch?v=9lQnt4p7_nE
 class Solution {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        List<List<Integer>>results = new ArrayList<>();
-        Arrays.sort(candidates);
-        combination(candidates, target, 0, new ArrayList<Integer>(), results);
-        return results;
-    }
+      
+     List<List<Integer>> result = new ArrayList<>();
+     
+     if(candidates == null || candidates.length == 0) {
+         return result;
+     }
+     
+     Arrays.sort(candidates);
+        
+     List<Integer> combinations = new ArrayList<Integer>();
     
-    private void combination(int[] candidates, 
-                             int target, 
-                             int index,
-                             ArrayList<Integer> current,  
-                             List<List<Integer>>results) {
+     findCombinations(candidates, combinations, result, target, 0);
+        
+     return result;  
+        
+    } 
+    
+    private void findCombinations(int[] candidates, List<Integer> combinations, List<List<Integer>> result, int target, int startIndex) {
         if(target == 0) {
-            results.add(new ArrayList<Integer>(current));
+            result.add(new ArrayList<>(combinations));
             return;
         }
         
-        if(target < 0) {
-            return;
-        }
-        
-        for(int i = index; i < candidates.length; i++) {          
-                if(candidates[i] > target){
-                    return;
-                }
-                current.add(candidates[i]);
-                combination(candidates, target - candidates[i], i, current, results);
-                current.remove(current.size() - 1);
-          
+        for(int i = startIndex; i < candidates.length; i++){
+            if(i != startIndex && candidates[i] == candidates[i - 1]){
+                continue;
+            }
+            
+            if(target < candidates[i]) {
+                break;
+            }
+            
+            combinations.add(candidates[i]);
+            
+            // TEVA, TRY TO THINK QUESTION 40. WHY WE pass HERE i and in the question 40 i + 1 for start Index
+            findCombinations(candidates, combinations, result, target-candidates[i], i);
+            
+            combinations.remove(combinations.size() - 1);
         }
     }
 }
