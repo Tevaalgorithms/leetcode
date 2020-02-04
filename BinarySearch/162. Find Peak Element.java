@@ -1,3 +1,4 @@
+// Teva, here why did NOT change the mid as mid - 1 in the right
 class Solution {
     // 1.48 PM
     public int findPeakElement(int[] nums) {
